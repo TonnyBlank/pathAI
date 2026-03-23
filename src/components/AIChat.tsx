@@ -110,16 +110,16 @@ export function AIChat() {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-4 border-b border-border bg-card flex-shrink-0">
+      <div className="flex flex-wrap items-start gap-3 border-b border-border bg-card px-4 py-4 sm:px-5 flex-shrink-0">
         <div className="w-9 h-9 rounded-xl flex items-center justify-center"
              style={{ background: "var(--gradient-primary)" }}>
           <Stethoscope size={18} className="text-primary-foreground" />
         </div>
-        <div>
+        <div className="min-w-0">
           <p className="font-display font-semibold text-foreground text-sm">pathAI Expert Assistant</p>
           <p className="text-xs text-muted-foreground">Advanced pathology support for study and review</p>
         </div>
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex flex-wrap items-center justify-end gap-2">
           <div className="w-2 h-2 rounded-full bg-clinical-success animate-pulse" />
           <span className="text-xs text-clinical-success">Online</span>
           {messages.length > 0 && (
@@ -135,7 +135,7 @@ export function AIChat() {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto scrollbar-thin px-4 py-4 space-y-4">
+      <div className="flex-1 overflow-y-auto scrollbar-thin px-3 py-4 sm:px-4 space-y-4">
         {messages.length === 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -190,7 +190,7 @@ export function AIChat() {
 
               {/* Bubble */}
               <div className={`
-                max-w-[80%] rounded-2xl px-4 py-3
+                max-w-[92%] rounded-2xl px-4 py-3 sm:max-w-[80%]
                 ${msg.role === "assistant"
                   ? "bg-card border border-border rounded-tl-sm"
                   : "rounded-tr-sm"
@@ -265,13 +265,13 @@ export function AIChat() {
           <button
             onClick={() => send(input)}
             disabled={!input.trim() || isLoading}
-            className="w-10 h-10 rounded-xl flex items-center justify-center transition-all disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
+            className="flex h-10 min-w-10 flex-shrink-0 items-center justify-center rounded-xl px-3 transition-all disabled:opacity-40 disabled:cursor-not-allowed sm:w-10 sm:px-0"
             style={{ background: "var(--gradient-primary)" }}
           >
             <Send size={16} className="text-primary-foreground" />
           </button>
         </div>
-        <p className="text-[10px] text-muted-foreground mt-2 text-center">
+        <p className="mt-2 text-center text-[10px] leading-relaxed text-muted-foreground">
           Press Enter to send · Shift+Enter for new line · For educational use only
         </p>
       </div>

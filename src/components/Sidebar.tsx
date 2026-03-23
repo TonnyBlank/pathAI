@@ -12,6 +12,7 @@ interface SidebarProps {
   onTabChange: (tab: Tab) => void;
   collapsed: boolean;
   onToggle: () => void;
+  mobile?: boolean;
 }
 
 const NAV_ITEMS: { id: Tab; icon: React.ReactNode; label: string; desc: string }[] = [
@@ -21,15 +22,16 @@ const NAV_ITEMS: { id: Tab; icon: React.ReactNode; label: string; desc: string }
   { id: "cases", icon: <FolderOpen size={20} />, label: "Case Manager", desc: "Manage your cases" },
 ];
 
-export function Sidebar({ activeTab, onTabChange, collapsed, onToggle }: SidebarProps) {
+export function Sidebar({ activeTab, onTabChange, collapsed, onToggle, mobile = false }: SidebarProps) {
   const { theme, toggleTheme } = useTheme();
+  const isCollapsed = mobile ? false : collapsed;
 
   return (
     <motion.aside
       initial={false}
-      animate={{ width: collapsed ? 72 : 256 }}
+      animate={mobile ? undefined : { width: isCollapsed ? 72 : 256 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
-      className="flex flex-col h-full bg-sidebar border-r border-sidebar-border relative overflow-hidden flex-shrink-0"
+      className={`relative flex h-full flex-col overflow-hidden border-r border-sidebar-border bg-sidebar ${mobile ? "w-full" : "flex-shrink-0"}`}
     >
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border min-h-[72px]">
@@ -37,7 +39,7 @@ export function Sidebar({ activeTab, onTabChange, collapsed, onToggle }: Sidebar
              style={{ background: "var(--gradient-primary)" }}>
           <FlaskConical size={18} className="text-primary-foreground" />
         </div>
-        {!collapsed && (
+        {!isCollapsed && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -58,7 +60,7 @@ export function Sidebar({ activeTab, onTabChange, collapsed, onToggle }: Sidebar
             <button
               key={item.id}
               onClick={() => onTabChange(item.id)}
-              title={collapsed ? item.label : undefined}
+              title={isCollapsed ? item.label : undefined}
               className={`
                 w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150
                 ${isActive
@@ -68,7 +70,7 @@ export function Sidebar({ activeTab, onTabChange, collapsed, onToggle }: Sidebar
               `}
             >
               <span className="flex-shrink-0">{item.icon}</span>
-              {!collapsed && (
+              {!isCollapsed && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -84,7 +86,7 @@ export function Sidebar({ activeTab, onTabChange, collapsed, onToggle }: Sidebar
       </nav>
 
       {/* Status */}
-      {!collapsed && (
+      {!isCollapsed && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -106,28 +108,30 @@ export function Sidebar({ activeTab, onTabChange, collapsed, onToggle }: Sidebar
           className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
         >
           {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-          {!collapsed && (
+          {!isCollapsed && (
             <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm">
               {theme === "dark" ? "Light Mode" : "Dark Mode"}
             </motion.span>
           )}
         </button>
 
-        <button
-          onClick={onToggle}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors"
-        >
-          {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-          {!collapsed && (
-            <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm">
-              Collapse
-            </motion.span>
-          )}
-        </button>
+        {!mobile && (
+          <button
+            onClick={onToggle}
+            className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors"
+          >
+            {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+            {!isCollapsed && (
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm">
+                Collapse
+              </motion.span>
+            )}
+          </button>
+        )}
       </div>
 
       {/* Medical disclaimer */}
-      {!collapsed && (
+      {!isCollapsed && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

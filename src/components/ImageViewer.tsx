@@ -113,17 +113,17 @@ export function ImageViewer() {
     setExpandedSection((prev) => (prev === id ? null : id));
 
   return (
-    <div className="flex flex-col lg:flex-row h-full gap-0 overflow-hidden">
+    <div className="flex h-full flex-col overflow-hidden lg:flex-row">
       {/* Image Panel */}
-      <div className="flex-1 flex flex-col min-w-0 border-r border-border">
+      <div className="flex min-h-0 flex-1 flex-col min-w-0 border-b border-border lg:border-b-0 lg:border-r">
         {/* Toolbar */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-card">
+        <div className="flex flex-wrap items-center gap-2 border-b border-border bg-card px-3 py-3 sm:px-4">
           <Microscope size={16} className="text-primary" />
           <span className="text-sm font-medium font-display">Image Viewer</span>
-          <div className="ml-auto flex gap-1">
+          <div className="ml-auto flex w-full flex-wrap gap-1 sm:w-auto">
             <button
               onClick={() => fileRef.current?.click()}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary hover:bg-secondary/80 text-secondary-foreground transition-colors"
+              className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 sm:flex-initial"
             >
               <Upload size={13} />
               Upload
@@ -131,7 +131,7 @@ export function ImageViewer() {
             {imageBase64 && !isAnalyzing && (
               <button
                 onClick={handleAnalyze}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors"
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors sm:flex-initial"
                 style={{ background: "var(--gradient-primary)", color: "hsl(var(--primary-foreground))" }}
               >
                 <Brain size={13} />
@@ -143,7 +143,7 @@ export function ImageViewer() {
 
         {/* Viewer */}
         <div
-          className="flex-1 relative overflow-hidden bg-black flex items-center justify-center"
+          className="relative flex min-h-[40vh] flex-1 items-center justify-center overflow-hidden bg-black lg:min-h-0"
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleDrop}
@@ -157,7 +157,7 @@ export function ImageViewer() {
             >
               {({ zoomIn, zoomOut, resetTransform }) => (
                 <>
-                  <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
+                  <div className="absolute right-3 top-3 z-10 flex flex-row gap-1 sm:flex-col">
                     {[
                       { icon: <ZoomIn size={14} />, fn: () => zoomIn(), tip: "Zoom In" },
                       { icon: <ZoomOut size={14} />, fn: () => zoomOut(), tip: "Zoom Out" },
@@ -194,7 +194,7 @@ export function ImageViewer() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className={`
-                  flex flex-col items-center justify-center gap-4 p-10 rounded-2xl border-2 border-dashed transition-all duration-200 cursor-pointer
+                  mx-3 flex max-w-2xl cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed p-6 transition-all duration-200 sm:p-10
                   ${isDragging ? "border-primary bg-teal-muted/30 scale-[1.02]" : "border-border bg-card/30 hover:border-primary/50"}
                 `}
                 onClick={() => fileRef.current?.click()}
@@ -235,7 +235,7 @@ export function ImageViewer() {
                   <p className="font-display font-semibold text-foreground mb-1">Analysis in Progress</p>
                   <p className="text-sm text-muted-foreground">pathAI is reviewing slide morphology...</p>
                 </div>
-                <div className="w-64 h-1.5 bg-secondary rounded-full overflow-hidden">
+                <div className="h-1.5 w-[min(16rem,80vw)] rounded-full bg-secondary overflow-hidden">
                   <motion.div
                     className="h-full rounded-full"
                     style={{ background: "var(--gradient-primary)" }}
@@ -259,8 +259,8 @@ export function ImageViewer() {
       </div>
 
       {/* Analysis Panel */}
-      <div className="w-full lg:w-[420px] flex flex-col bg-card border-l border-border overflow-hidden flex-shrink-0">
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
+      <div className="flex w-full flex-col overflow-hidden bg-card flex-shrink-0 border-border lg:w-[420px] lg:border-l">
+        <div className="flex flex-wrap items-center gap-2 border-b border-border px-3 py-3 sm:px-4">
           <Activity size={16} className="text-primary" />
           <span className="text-sm font-medium font-display">AI Analysis Report</span>
           {analysis && (
@@ -270,7 +270,7 @@ export function ImageViewer() {
           )}
         </div>
 
-        <div className="flex-1 overflow-y-auto scrollbar-thin p-4 space-y-3">
+        <div className="flex-1 overflow-y-auto scrollbar-thin p-3 space-y-3 sm:p-4">
           {!analysis && !isAnalyzing && (
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center py-12">
               <div className="w-14 h-14 rounded-xl bg-secondary flex items-center justify-center">
@@ -326,7 +326,7 @@ export function ImageViewer() {
               )}
 
               {/* Overview cards */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 <div className="p-3 rounded-xl bg-secondary">
                   <p className="text-xs text-muted-foreground mb-1">Tissue Type</p>
                   <p className="text-sm font-medium text-foreground">{analysis.tissueType || "—"}</p>

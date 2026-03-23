@@ -81,17 +81,17 @@ export function LearningMode() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-4 border-b border-border bg-card flex-shrink-0">
+      <div className="flex flex-wrap items-start gap-3 border-b border-border bg-card px-4 py-4 sm:px-5 flex-shrink-0">
         <div className="w-9 h-9 rounded-xl flex items-center justify-center"
              style={{ background: "var(--gradient-primary)" }}>
           <Brain size={18} className="text-primary-foreground" />
         </div>
-        <div>
+        <div className="min-w-0">
           <p className="font-display font-semibold text-foreground text-sm">Learning Mode</p>
           <p className="text-xs text-muted-foreground">40+ question bank · Randomized · Expert explanations</p>
         </div>
         {state === "quiz" && (
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex flex-wrap items-center justify-end gap-3">
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Clock size={12} />
               {Math.floor(quizTimer / 60)}:{String(quizTimer % 60).padStart(2, "0")}
@@ -116,7 +116,7 @@ export function LearningMode() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="p-6 max-w-2xl mx-auto"
+              className="mx-auto max-w-2xl p-4 sm:p-6"
             >
               <div className="text-center mb-8">
                 <div className="w-20 h-20 rounded-2xl mx-auto mb-4 flex items-center justify-center"
@@ -132,7 +132,7 @@ export function LearningMode() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-3 mb-8">
+              <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {[
                   { label: "Questions", value: "40+", icon: <Target size={18} />, color: "text-primary" },
                   { label: "Categories", value: "15+", icon: <BookOpen size={18} />, color: "text-clinical-success" },
@@ -201,7 +201,7 @@ export function LearningMode() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.25 }}
-              className="p-6 max-w-3xl mx-auto"
+              className="mx-auto max-w-3xl p-4 sm:p-6"
             >
               {/* Progress bar */}
               <div className="mb-6">
@@ -221,7 +221,7 @@ export function LearningMode() {
 
               {/* Question card */}
               <div className="bg-card border border-border rounded-2xl p-5 mb-4">
-                <div className="flex items-center gap-2 mb-3">
+                <div className="mb-3 flex flex-wrap items-center gap-2">
                   <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${DIFFICULTY_COLOR[questions[current].difficulty]}`}>
                     {questions[current].difficulty}
                   </span>
@@ -257,7 +257,7 @@ export function LearningMode() {
                       disabled={answered}
                       whileHover={!answered ? { scale: 1.005 } : {}}
                       whileTap={!answered ? { scale: 0.997 } : {}}
-                      className={`w-full text-left p-4 rounded-xl border transition-all duration-150 flex items-start gap-3 ${cls}`}
+                      className={`flex w-full items-start gap-3 rounded-xl border p-4 text-left transition-all duration-150 ${cls}`}
                     >
                       <span className={`
                         w-6 h-6 rounded-lg flex items-center justify-center text-xs font-mono font-semibold flex-shrink-0 mt-0.5
@@ -327,7 +327,7 @@ export function LearningMode() {
               key="done"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="p-6 max-w-2xl mx-auto"
+              className="mx-auto max-w-2xl p-4 sm:p-6"
             >
               <div className="text-center mb-8">
                 <motion.div
@@ -393,7 +393,7 @@ export function LearningMode() {
                 })}
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <button
                   onClick={() => startQuiz(questionCount)}
                   className="flex-1 py-3 rounded-xl font-medium text-primary-foreground flex items-center justify-center gap-2 transition-all hover:opacity-90"
