@@ -1,0 +1,272 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    /* HistoPath AI — Clinical Dark Theme (default) */
+    --background: 220 20% 7%;
+    --foreground: 210 20% 92%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 186 100% 42%;
+    --primary-foreground: 220 20% 7%;
+
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 210 20% 80%;
+
+    --muted: 220 15% 14%;
+    --muted-foreground: 215 15% 52%;
+
+    --accent: 186 90% 35%;
+    --accent-foreground: 210 20% 92%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
+    --ring: 186 100% 42%;
+
+    --radius: 0.75rem;
+
+    /* Custom clinical tokens */
+    --teal: 186 100% 42%;
+    --teal-glow: 186 100% 35%;
+    --teal-muted: 186 60% 20%;
+    --cyan: 195 100% 50%;
+    --emerald: 152 76% 40%;
+    --warning: 38 92% 50%;
+    --info: 210 100% 56%;
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glow-teal: 0 0 20px rgba(0, 212, 212, 0.15);
+    --glow-teal-strong: 0 0 40px rgba(0, 212, 212, 0.25);
+
+    --gradient-primary: linear-gradient(135deg, hsl(186 100% 42%), hsl(195 100% 50%));
+    --gradient-dark: linear-gradient(180deg, hsl(220 20% 7%), hsl(220 25% 5%));
+    --gradient-card: linear-gradient(145deg, hsl(220 18% 12%), hsl(220 18% 9%));
+
+    --sidebar-background: 220 22% 6%;
+    --sidebar-foreground: 210 20% 75%;
+    --sidebar-primary: 186 100% 42%;
+    --sidebar-primary-foreground: 220 20% 7%;
+    --sidebar-accent: 220 15% 14%;
+    --sidebar-accent-foreground: 210 20% 85%;
+    --sidebar-border: 220 14% 14%;
+    --sidebar-ring: 186 100% 42%;
+  }
+
+  .light {
+    --background: 210 20% 97%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 186 80% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 93%;
+    --secondary-foreground: 220 20% 20%;
+
+    --muted: 210 20% 93%;
+    --muted-foreground: 215 15% 48%;
+
+    --accent: 186 70% 28%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 87%;
+    --input: 210 20% 87%;
+    --ring: 186 80% 32%;
+
+    --glass-bg: rgba(0, 0, 0, 0.02);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glow-teal: 0 0 20px rgba(0, 160, 160, 0.08);
+    --glow-teal-strong: 0 0 40px rgba(0, 160, 160, 0.15);
+
+    --gradient-primary: linear-gradient(135deg, hsl(186 80% 32%), hsl(195 80% 40%));
+    --gradient-dark: linear-gradient(180deg, hsl(210 20% 97%), hsl(210 25% 94%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 20% 97%));
+
+    --sidebar-background: 210 20% 95%;
+    --sidebar-foreground: 220 20% 20%;
+    --sidebar-primary: 186 80% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 90%;
+    --sidebar-accent-foreground: 220 20% 20%;
+    --sidebar-border: 210 20% 87%;
+    --sidebar-ring: 186 80% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  code, pre, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glow-teal {
+    box-shadow: var(--glow-teal);
+  }
+
+  .glow-teal-strong {
+    box-shadow: var(--glow-teal-strong);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 2px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+
+  .prose-pathology {
+    line-height: 1.7;
+  }
+  .prose-pathology h1, .prose-pathology h2, .prose-pathology h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: hsl(var(--foreground));
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+  }
+  .prose-pathology h3 {
+    color: hsl(var(--primary));
+  }
+  .prose-pathology strong {
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+  .prose-pathology ul, .prose-pathology ol {
+    padding-left: 1.5em;
+  }
+  .prose-pathology li {
+    margin: 0.3em 0;
+  }
+  .prose-pathology p {
+    margin: 0.6em 0;
+  }
+  .prose-pathology code {
+    background: hsl(var(--muted));
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.875em;
+  }
+  .prose-pathology table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.8em 0;
+  }
+  .prose-pathology th, .prose-pathology td {
+    border: 1px solid hsl(var(--border));
+    padding: 0.4em 0.8em;
+    font-size: 0.9em;
+  }
+  .prose-pathology th {
+    background: hsl(var(--muted));
+  }
+  .prose-pathology a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+  }
+  .prose-pathology blockquote {
+    border-left: 3px solid hsl(var(--primary));
+    padding-left: 1em;
+    color: hsl(var(--muted-foreground));
+    margin: 0.8em 0;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse-teal {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 212, 212, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 212, 212, 0.6); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in-up { animation: fade-in-up 0.4s ease-out; }
+.animate-slide-in-right { animation: slide-in-right 0.35s ease-out; }
+.animate-pulse-teal { animation: pulse-teal 2s ease-in-out infinite; }
