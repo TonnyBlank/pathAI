@@ -70,10 +70,10 @@ function AppContent() {
               </SheetContent>
             </Sheet>
             <div className="min-w-0">
-              <p className="font-display text-sm font-semibold text-foreground">pathAI</p>
+              <p className="font-display text-sm font-semibold text-foreground">Caren musulia AI</p>
               <p className="truncate text-xs text-muted-foreground">
                 {activeTab === "viewer" && "Image Viewer"}
-                {activeTab === "chat" && "AI Assistant"}
+                {activeTab === "chat" && "Caren musulia AI"}
                 {activeTab === "learn" && "Learning Mode"}
                 {activeTab === "cases" && "Case Manager"}
               </p>

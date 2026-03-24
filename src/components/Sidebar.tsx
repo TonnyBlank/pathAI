@@ -17,7 +17,7 @@ interface SidebarProps {
 
 const NAV_ITEMS: { id: Tab; icon: React.ReactNode; label: string; desc: string }[] = [
   { id: "viewer", icon: <Microscope size={20} />, label: "Image Viewer", desc: "Upload & analyze slides" },
-  { id: "chat", icon: <MessageSquare size={20} />, label: "AI Assistant", desc: "Expert pathology Q&A" },
+  { id: "chat", icon: <MessageSquare size={20} />, label: "Caren musulia AI", desc: "Expert pathology Q&A" },
   { id: "learn", icon: <BookOpen size={20} />, label: "Learning Mode", desc: "Quiz & study tools" },
   { id: "cases", icon: <FolderOpen size={20} />, label: "Case Manager", desc: "Manage your cases" },
 ];
@@ -46,7 +46,7 @@ export function Sidebar({ activeTab, onTabChange, collapsed, onToggle, mobile = 
             exit={{ opacity: 0 }}
             className="overflow-hidden"
           >
-            <p className="font-display font-700 text-sm text-sidebar-foreground leading-tight">pathAI</p>
+            <p className="font-display font-700 text-sm text-sidebar-foreground leading-tight">Caren musulia AI</p>
             <p className="text-xs text-muted-foreground">Digital Pathology Platform</p>
           </motion.div>
         )}

@@ -116,7 +116,7 @@ export function AIChat() {
           <Stethoscope size={18} className="text-primary-foreground" />
         </div>
         <div className="min-w-0">
-          <p className="font-display font-semibold text-foreground text-sm">pathAI Expert Assistant</p>
+          <p className="font-display font-semibold text-foreground text-sm">Caren musulia AI</p>
           <p className="text-xs text-muted-foreground">Advanced pathology support for study and review</p>
         </div>
         <div className="ml-auto flex flex-wrap items-center justify-end gap-2">

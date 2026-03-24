@@ -233,7 +233,7 @@ export function ImageViewer() {
                 <div className="w-16 h-16 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
                 <div className="text-center">
                   <p className="font-display font-semibold text-foreground mb-1">Analysis in Progress</p>
-                  <p className="text-sm text-muted-foreground">pathAI is reviewing slide morphology...</p>
+                  <p className="text-sm text-muted-foreground">Caren musulia AI is reviewing slide morphology...</p>
                 </div>
                 <div className="h-1.5 w-[min(16rem,80vw)] rounded-full bg-secondary overflow-hidden">
                   <motion.div
